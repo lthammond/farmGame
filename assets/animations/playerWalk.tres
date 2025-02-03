@@ -1,0 +1,46 @@
+[gd_resource type="AnimationNodeBlendSpace2D" load_steps=9 format=3 uid="uid://cqtf6yqeb8w7f"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4e5yi"]
+animation = &"walkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1mdlo"]
+animation = &"walkRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ufug0"]
+animation = &"walkUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fqhkf"]
+animation = &"walkDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rtcbq"]
+animation = &"walkUpLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s4qv3"]
+animation = &"walkUpRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cqt8b"]
+animation = &"walkDownLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ubo16"]
+animation = &"walkDownRight"
+
+[resource]
+auto_triangles = false
+blend_point_0/node = SubResource("AnimationNodeAnimation_4e5yi")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_1mdlo")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ufug0")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_fqhkf")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_rtcbq")
+blend_point_4/pos = Vector2(-1, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_s4qv3")
+blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_cqt8b")
+blend_point_6/pos = Vector2(-1, 1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_ubo16")
+blend_point_7/pos = Vector2(1, 1)
+triangles = PackedInt32Array()
+blend_mode = 1
