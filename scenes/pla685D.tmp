@@ -382,7 +382,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_bv1et"]
 resource_name = "tillDown"
-length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -402,7 +401,7 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [42, 43]
@@ -410,7 +409,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_06nls"]
 resource_name = "tillLeft"
-length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -430,7 +428,7 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [42, 43]
@@ -438,7 +436,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_kecny"]
 resource_name = "tillRight"
-length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -458,7 +455,7 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [42, 43]
@@ -466,7 +463,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_yxo2x"]
 resource_name = "tillUp"
-length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -486,7 +482,7 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [42, 43]
@@ -892,23 +888,26 @@ libraries = {
 "": SubResource("AnimationLibrary_r0rxa")
 }
 
-[node name="PlayerAnimation" type="Node" parent="."]
+[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("3_k7jm8")
+animation_tree = NodePath("../AnimationTree")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "actor")]
 script = ExtResource("5_t7p5f")
 initial_state = NodePath("Idle")
+actor = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("6_5gkt3")
 
 [node name="Water" type="Node" parent="StateMachine"]
 
-[node name="Till" type="Node" parent="StateMachine"]
+[node name="Till" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("16_wkcbr")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("7_7fa7o")
 
-[node name="Stats" type="Node" parent="StateMachine"]
+[node name="Stats" type="Node" parent="."]
 script = ExtResource("15_upyai")

@@ -1,7 +1,6 @@
-extends PlayerState
-class_name PlayerWalk
+class_name PlayerWalk extends PlayerState
 
-@onready var player = get_parent().actor
+static var state_name = "Walk"
 
 func enter():
 	DebugLog.log("Entered Walk State")
@@ -15,5 +14,12 @@ func physics_update(delta: float):
 		player.velocity = player.velocity.move_toward(Vector2.ZERO, deceleration * delta)
 		if player.velocity == Vector2.ZERO:
 			transitioned.emit(self, "idle")
+			
+	if Input.is_action_just_pressed("use"):
+		transitioned.emit(self, "till")
 
 	player.move_and_slide()
+
+
+func get_state_name() -> String:
+	return state_name
