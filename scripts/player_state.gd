@@ -1,19 +1,26 @@
 class_name PlayerState extends State
 
-# Any variables that many player states share can go in here
-@export var speed = 125.0
-@export var acceleration = 1000.0
-@export var deceleration = 1000.0
-
-var animation_tree: AnimationTree
-var animation_state_machine: AnimationNodeStateMachinePlayback
 var player: PlayerController
+var animation_player: AnimationPlayer
 
+# Stats like speed can be placed in PlayerController instead
+# Removing them from here to simplify
 
-@export var current_tool: DataTypes.Tools = DataTypes.Tools.NONE
-
-
-func _init(player_controller: PlayerController) -> void:
+func initialize(player_controller: PlayerController) -> void:
 	player = player_controller
-	animation_tree = player.animation_tree
-	animation_state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+
+# This method is for any state-specific behavior, like animations
+func enter(_input) -> void:
+	DebugLog.log("Entered State: %s" % name)
+
+# Optionally add other state-specific methods
+func exit() -> void:
+	DebugLog.log("Exiting State: %s" % name)
+
+func update(delta: float) -> void:
+	# Update logic for state
+	pass
+
+func physics_update(delta: float) -> void:
+	# Physics-specific logic for state
+	pass

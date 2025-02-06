@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://bdcy3oxsp0xjn"]
+[gd_scene load_steps=43 format=3 uid="uid://bdcy3oxsp0xjn"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_fbv8r"]
 [ext_resource type="Texture2D" uid="uid://d2didkqbnv17v" path="res://assets/player/Down.png" id="2_oep5o"]
+[ext_resource type="Script" path="res://scripts/player/player_animation_tree.gd" id="3_k7jm8"]
 [ext_resource type="Texture2D" uid="uid://c508oy6yfyo7r" path="res://assets/player/DownLeft.png" id="4_0k525"]
 [ext_resource type="Texture2D" uid="uid://btxjaokqkupbu" path="res://assets/player/Left.png" id="5_7hqav"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="5_t7p5f"]
@@ -762,9 +763,10 @@ _data = {
 "waterUp": SubResource("Animation_elntv")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "animation_player")]
 position = Vector2(615, 381)
 script = ExtResource("1_fbv8r")
+state_machine = NodePath("StateMachine")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -780,6 +782,9 @@ frame = 42
 libraries = {
 "": SubResource("AnimationLibrary_r0rxa")
 }
+
+[node name="PlayerAnimation" type="Node" parent="."]
+script = ExtResource("3_k7jm8")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_t7p5f")

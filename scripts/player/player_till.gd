@@ -1,19 +1,18 @@
 class_name PlayerTill extends PlayerState
 
-static var state_name = "Till"
 
-func enter():
+func enter(direction: String = ""):
 	DebugLog.log("Entered Till State")
-	player.tilling = true
+	player.velocity = Vector2.ZERO
+	
+	if direction == "":
+		player.animation_player.play("till" + player.get_direction_from_mouse(player.mouse_direction))
+	else:
+		player.animation_player.play("till" + direction.capitalize())
+
+	player.animation_player.animation_finished.connect(_on_animation_finished)
 
 
-func update(delta):
-	var animation_length = animation_state_machine.get_current_length()
-	var animation_progress = animation_state_machine.get_current_play_position()
-	if animation_progress == animation_length:
-		transitioned.emit(self, "idle")
-		player.tilling = false
-
-
-func get_state_name() -> String:
-	return state_name
+func _on_animation_finished(animation_name: String) -> void:
+	transitioned.emit(self, "idle")
+	player.animation_player.animation_finished.disconnect(_on_animation_finished)

@@ -4,7 +4,7 @@ class_name State
 signal transitioned
 
 
-func enter():
+func enter(input_used: String):
 	pass
 
 
@@ -18,6 +18,3 @@ func update(_delta: float):
 
 func physics_update(_delta: float):
 	pass
-
-func get_state_name() -> String:
-	return ""
