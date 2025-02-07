@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://beuatxhuetbst"]
+[gd_scene load_steps=5 format=4 uid="uid://beuatxhuetbst"]
 
 [ext_resource type="Texture2D" uid="uid://btfff85xlxins" path="res://icon.svg" id="1_dh7pa"]
 [ext_resource type="TileSet" uid="uid://rwbsxftnuo6m" path="res://assets/tileSets/GameTileSet.tres" id="2_wl3c8"]
 [ext_resource type="PackedScene" uid="uid://bdcy3oxsp0xjn" path="res://scenes/player.tscn" id="3_aud5m"]
+[ext_resource type="Script" path="res://scripts/field_cursor_component.gd" id="3_m20e1"]
 
 [node name="testLevel" type="Node2D"]
 
@@ -23,8 +24,12 @@ tile_map_data = PackedByteArray("AAAlABcABQAKAAEAAAAlABYABQAKAAEAAAAlABUABQAKAAE
 tile_set = ExtResource("2_wl3c8")
 
 [node name="Farmland" type="TileMapLayer" parent="TileMap"]
-tile_map_data = PackedByteArray("AAAlABoABAADAAIAAAAlABkABAADAAEAAAAlABgABAADAAAAAAAkABoABAACAAIAAAAkABkABAACAAEAAAAkABgABAACAAAAAAAjABoABAABAAIAAAAjABkABAABAAEAAAAjABgABAABAAAAAAA=")
 tile_set = ExtResource("2_wl3c8")
+
+[node name="FieldCursorComponent" type="Node" parent="." node_paths=PackedStringArray("grass_tilemap_layer", "tilled_soil_tilemap_layer")]
+script = ExtResource("3_m20e1")
+grass_tilemap_layer = NodePath("../TileMap/Grass")
+tilled_soil_tilemap_layer = NodePath("../TileMap/Farmland")
 
 [node name="Player" parent="." instance=ExtResource("3_aud5m")]
 
